@@ -31,18 +31,37 @@ void printArray(int arr[], int size)
   
 // Driver program to test above functions 
 int main() 
-{ int N, arr[N];
-printf("Input no. of element in array arr: ");
-scanf("%d", &N);
-printf("Input array arr elements in one line: ");
-for(int d=0; d<N; d++){
-   fscanf(stdin, "%d", &arr[d]);
-}
+{  int i, max, min, N, arr[N];
+
+    printf("Enter size of the array: ");
+    scanf("%d", &N);
+    printf("Enter elements in the array: ");
+    for(i=0; i<N; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+
+    max = arr[0];
+    min = arr[0];
+
+    for(i=1; i<N; i++)
+    {
+        if(arr[i] > max)
+        {
+            max = arr[i];
+        }
+        if(arr[i] < min)
+        {
+            min = arr[i];
+        }
+    }
 int n = sizeof(arr)/sizeof(arr[0]); 
      printf("Before sorted array: \n"); 
-    printArray(arr, n);
-    bubbleSort(arr, n); 
+    printArray(arr, N);
+    bubbleSort(arr, N); 
     printf("Sorted array: \n"); 
-    printArray(arr, n); 
+    printArray(arr, N); 
+     printf("Maximum element = %d\n", max);
+    printf("Minimum element = %d", min);
     return 0; 
 } 
