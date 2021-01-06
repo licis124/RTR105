@@ -1,6 +1,6 @@
 // C program for implementation of Bubble sort 
 #include <stdio.h> 
-  
+#include <stdlib.h>  
 void swap(int *xp, int *yp) 
 { 
     int temp = *xp; 
@@ -31,16 +31,25 @@ void printArray(int arr[], int size)
   
 // Driver program to test above functions 
 int main() 
-{  int i, max, min, N, arr[N];
-
+{  int i, max, min, N,average;
+int * arr;
+float sum, mediana ;
     printf("Enter size of the array: ");
     scanf("%d", &N);
-    printf("Enter elements in the array: ");
+    arr=(int*)malloc (i);
+    if(arr==NULL) exit(1);
+    printf("Size or array :%lu\n",sizeof(arr)/sizeof(arr[0]) );
+    printf("Enter elements in the array: \n");
     for(i=0; i<N; i++)
     {
         scanf("%d", &arr[i]);
+         sum += arr[i];
     }
-
+    if(N%2)
+        mediana= arr[N/2];
+    else
+        mediana= (arr[N/2]+arr[N/2-1])/2;
+    average = sum/N;
     max = arr[0];
     min = arr[0];
 
@@ -62,6 +71,6 @@ int n = sizeof(arr)/sizeof(arr[0]);
     printf("Sorted array: \n"); 
     printArray(arr, N); 
      printf("Maximum element = %d\n", max);
-    printf("Minimum element = %d", min);
+    printf("Minimum element = %d\n", min);
+    printf("Average = %d\n", average);
     return 0; 
-} 
