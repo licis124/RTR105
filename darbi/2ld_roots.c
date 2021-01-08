@@ -2,11 +2,13 @@
 #include <math.h>
 int main()
 {
-    float a , b,B , x, delta_x, funca, funcb;
+    float a , b,B,c , x, delta_x, funca, funcb;
     printf("Cien. liet. ievadiet pirmo robežu : ");
     scanf("%f",&a);
      printf("Cien. liet. ievadiet otro robežu : ");
     scanf("%f",&b);
+    printf("Cien. liet. ievadiet rezultātu kuru gribat dabūt no funkcijas j0(x) : ");
+    scanf("%f",&c);
     printf("Cien. liet. ievadiet precizitātes vērtības iegūšanu : ");
     scanf("%f",&delta_x);
     
@@ -14,14 +16,14 @@ int main()
     B=b*M_PI;
     funca = j0(a); funcb = j0(B);
     if(funca*funcb>0){
-        printf("Intervala [%.2f ; %.2f] j0(x) funkcijai",a,B);
-        printf("Saknju nav (vai taja ir paru saknju skaits)\n");
+        printf("Intervala [%.2f ; %.2f]  funkcijai j0(x)",a,B);
+        printf(" saknju nav (vai taja ir paru saknju skaits)\n");
         return 1;
     }
     printf("j0(%7.3f)=%7.3f\t\t\t\t",a,j0(a));
     printf("j0(%7.3f)=%7.3f\n",B,j0(B));
-    
-    while((B-a)>delta_x){
+
+    while((B-a)>delta_x && c<(B-a)){
         k++;
         x = (a+B)/2.;
         if(funca*j0(x)>0)
@@ -32,7 +34,9 @@ int main()
         printf("j0(%7.3f)=%7.3f\t",x,j0(x));
          printf("j0(%7.3f)=%7.3f\n",B,j0(B));
     }
-printf("Sakne atrodas pie x=%.3f, jo j0(x) ir %.3f\n",x,j0(x));
+   
+    
+printf("Sakne atrodas pie x=%.3f, jo j0(x) ir %.3f \n",x,c);
 printf("Lai aprēķinātu šo x vērtību ar uzdoto precizitāti, vajadzēja %d iterāciju ",k);
     return 0;
 }
