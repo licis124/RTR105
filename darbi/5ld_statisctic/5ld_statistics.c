@@ -1,99 +1,56 @@
-// C program for implementation of Bubble sort 
-#include <stdio.h> 
-#include <stdlib.h>  
-void swap(int *xp, int *yp) 
-{ 
-    int temp = *xp; 
-    *xp = *yp; 
-    *yp = temp; 
-} 
-  
-// A function to implement bubble sort 
-void bubbleSort(int arr[], int n) 
-{ 
-   int i, j; 
-   for (i = 0; i < n-1; i++)       
-  
-       // Last i elements are already in place    
-       for (j = 0; j < n-i-1; j++)  
-           if (arr[j] > arr[j+1]) 
-              swap(&arr[j], &arr[j+1]); 
-} 
-  
-/* Function to print an array */
-void printArray(int arr[], int size) 
-{ 
-    int i; 
-    for (i=0; i < size; i++) 
-        printf("%d ", arr[i]); 
-    printf("\n"); 
-} 
-int mode(int arr[],int n) {
-   int maxValue = 0, maxCount = 0, i, j;
+#include <stdio.h>
+#include <math.h>
+#include <conio.h>
 
-   for (i = 0; i < n; ++i) {
-      int count = 0;
-      
-      for (j = 0; j < n; ++j) {
-         if (arr[j] == arr[i])
-         ++count;
-      }
-      
-      if (count > maxCount) {
-         maxCount = count;
-         maxValue = arr[i];
-      }
-   }
 
-   return maxValue;
-}
-  
-// Driver program to test above functions 
-int main() 
-{  int i, max, min, N;
-int * arr;
-float sum, mediana,average ;
-    printf("Enter size of the array: ");
-    scanf("%d", &N);
-    arr=(int*)malloc (i);
-    if(arr==NULL) exit(1);
-    printf("Size or array :%lu\n",sizeof(arr)/sizeof(arr[0]) );
-    printf("Enter elements in the array: \n");
-    for(i=0; i<N; i++)
-    {
-        scanf("%d", &arr[i]);
-         sum += arr[i];
+
+void main(){
+    float a, b, d, B, eps, h,h1,h2, interg1=0, interg2,S1,S2,x,x1,sum=0,sum1=0,integral,intergral;
+    int k,n=2,i,i1;
+      printf("Cien. liet. ievadiet punktu skaitu : ");
+    scanf("%f",&d);
+   printf("Cien. liet. ievadiet pirmo robežu : ");
+    scanf("%f",&a);
+    printf("Cien. liet. ievadiet otro robežu : ");
+    scanf("%f",&B);
+    printf("Cien. liet. ievadiet precizitātes vērtības iegūšanu : ");
+    scanf("%f",&eps);
+    b=M_PI/B;
+    interg2=(b-a)*(j0(a)+j0(b))/n;
+    //trapeces
+   h1=fabs(b-a)/d;
+   for(i=1;i<d;i++){
+    x=a+i*h1;
+    sum=sum+j0(x);
+    
+  }
+  integral=(h1/2)*(j0(a)+j0(b)+2*sum);
+  printf("Trapeces metodes intergralja vetiba : %f\n",integral);
+  //trapeces beigas metode
+  //Simspon metode sakums
+   h2=fabs(b-a)/d;
+  for(i1=1;i1<d;i1++){
+    x1=a+i1*h2;
+    if(i1%2==0){
+      sum1=sum1+2*j0(x1);
+    }
+    else{
+      sum1=sum1+4*j0(x1);
+    }
+  }
+  intergral=(h2/3)*(j0(a)+j0(b)+sum1);
+  printf("Simpsonas metodes intergrala vertiba : %f\n",intergral);
+  //beigas
+  // taisnstura sakums
+    while(fabs(interg2-interg1)>eps){
+        n*=2;
+        h=(b-a)/n;
+        interg1=interg2;
+        interg2=0;
+        for(k=0;k<n;k++)
+        interg2+=h*j0(a+(k+0.5)*h);
     }
     
-
-    for(i=1; i<N; i++)
-    {
-        if(arr[i] > max)
-        {
-            max = arr[i];
-        }
-        if(arr[i] < min)
-        {
-            min = arr[i];
-        }
-    }
-int n = sizeof(arr)/sizeof(arr[0]); 
-     printf("Before sorted array: \n"); 
-    printArray(arr, N);
-    bubbleSort(arr, N); 
-    printf("Sorted array: \n"); 
-    printArray(arr, N); 
-    if(N%2)
-        mediana= arr[N/2];
-    else
-        mediana= (arr[N/2]+arr[N/2-1])/2;
-    average = sum/N;
-    max = arr[0];
-    min = arr[0];
-     printf("Maximum element = %d\n", max);
-    printf("Minimum element = %d\n", min);
-    printf("Average = %.2f\n", average);
-    printf("Mediana = %.3f\n", mediana);
-    printf("Mode = %d ", mode(arr,N));
-    return 0; 
+    printf("Tainstura metodes intergralja vertiba: %.2f\n",interg2);
+ //beigas
 }
